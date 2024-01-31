@@ -7,7 +7,7 @@ const AddTaskComponent = () => {
   const [title, settitle] = useState("");
   const [description, setdescription] = useState("");
   const [status, setstatus] = useState("");
-  
+
   // React Router hooks for navigation and extracting parameters from the URL
   const navigate = useNavigate();
   const { id } = useParams();

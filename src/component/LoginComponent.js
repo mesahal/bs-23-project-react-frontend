@@ -16,30 +16,32 @@ function Login() {
     event.preventDefault();
     try {
       // Sending a POST request to the login API endpoint
-      await axios.post("http://localhost:8080/api/login", {
-        userName: username,
-        password: password,
-      }).then(
-        // Handling the response from the server
-        (res) => {
-          console.log(res.data);
+      await axios
+        .post("http://localhost:8080/api/login", {
+          userName: username,
+          password: password,
+        })
+        .then(
+          // Handling the response from the server
+          (res) => {
+            console.log(res.data);
 
-          // Checking the response data for different scenarios
-          if (res.data.message === "Email not exits") {
-            alert("Email not exists");
-          } else if (res.data.status === true) {
-            // If login is successful, navigate to the tasks page
-            navigate("/tasks");
-          } else {
-            // If login fails, display an alert with the error message
-            alert(res.data.message);
+            // Checking the response data for different scenarios
+            if (res.data.message === "Email not exits") {
+              alert("Email not exists");
+            } else if (res.data.status === true) {
+              // If login is successful, navigate to the tasks page
+              navigate("/tasks");
+            } else {
+              // If login fails, display an alert with the error message
+              alert(res.data.message);
+            }
+          },
+          // Handling any failures in the API request
+          (fail) => {
+            console.error(fail);
           }
-        },
-        // Handling any failures in the API request
-        (fail) => {
-          console.error(fail);
-        }
-      );
+        );
     } catch (err) {
       // Handling any unexpected errors during the login process
       alert(err);
@@ -100,7 +102,11 @@ function Login() {
               </button>
 
               {/* Registration button */}
-              <button type="submit" className="btn btn-primary" onClick={register}>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={register}
+              >
                 Register
               </button>
             </form>

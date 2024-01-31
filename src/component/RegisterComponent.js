@@ -8,7 +8,7 @@ function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
   // React Router hook for navigation
   const navigate = useNavigate();
 
@@ -17,29 +17,31 @@ function Register() {
     event.preventDefault();
     try {
       // Sending user registration data to the server
-      await axios.post("http://localhost:8080/api/register", {
-        userName: username,
-        email: email,
-        password: password,
-      }).then(
-        (res) => {
-          console.log(res.data);
+      await axios
+        .post("http://localhost:8080/api/register", {
+          userName: username,
+          email: email,
+          password: password,
+        })
+        .then(
+          (res) => {
+            console.log(res.data);
 
-          // Handling different response scenarios
-          if (res.data.status === true) {
-            alert("User Registration Successful");
-            navigate("/");
-          } else if (res.data.message === "Invalid Email") {
-            alert("Invalid Email");
-          } else {
-            alert(res.data.message);
+            // Handling different response scenarios
+            if (res.data.status === true) {
+              alert("User Registration Successful");
+              navigate("/");
+            } else if (res.data.message === "Invalid Email") {
+              alert("Invalid Email");
+            } else {
+              alert(res.data.message);
+            }
+          },
+          (fail) => {
+            console.error(fail);
+            alert(fail.response.data);
           }
-        },
-        (fail) => {
-          console.error(fail);
-          alert(fail.response.data);
-        }
-      );
+        );
     } catch (err) {
       alert(err);
     }
@@ -94,7 +96,11 @@ function Register() {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary mt-4" onClick={save}>
+            <button
+              type="submit"
+              className="btn btn-primary mt-4"
+              onClick={save}
+            >
               Save
             </button>
           </form>

@@ -4,6 +4,8 @@ import FooterComponent from "./component/FooterComponent";
 import ListTaskComponent from "./component/ListTaskComponent";
 import AddTaskComponent from "./component/AddTaskComponent";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Register from "./component/RegisterComponent";
+import Login from "./component/LoginComponent";
 
 function App() {
   return (
@@ -11,8 +13,9 @@ function App() {
       <HeaderComponent />
       <div className="container">
         <Routes>
-          <Route path="/" element={<ListTaskComponent />} />
-          <Route path="/task" element={<ListTaskComponent />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/tasks" element={<ListTaskComponent />} />
           <Route path="/add-task" element={<AddTaskComponent />} />
           <Route path="/add-task/:id" element={<AddTaskComponent />} />
         </Routes>

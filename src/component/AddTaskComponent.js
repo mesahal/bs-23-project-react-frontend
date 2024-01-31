@@ -24,11 +24,11 @@ const AddTaskComponent = () => {
       /**If id is present in the parameter, it should update else it should save */
       if (id) {
         TaskService.updateTask(id, TaskData)
-          .then(navigate("/Task"))
+          .then(navigate("/tasks"))
           .catch((e) => console.log(e));
       } else {
         TaskService.saveTask(TaskData)
-          .then(navigate("/Task"))
+          .then(navigate("/tasks"))
           .catch((e) => console.log(e));
       }
     } else {
